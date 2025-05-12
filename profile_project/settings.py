@@ -72,6 +72,8 @@ WSGI_APPLICATION = 'profile_project.wsgi.application'
 # Database
 
 
+import urllib.parse
+
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL and DATABASE_URL.startswith("postgres"):
@@ -79,11 +81,11 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres"):
         'default': dj_database_url.config(
             default=DATABASE_URL,
             conn_max_age=600,
-            ssl_require=not DEBUG
+            ssl_require=True
         )
     }
 else:
-    # Use SQLite for local development
+    # Default to SQLite (local development or missing DATABASE_URL)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
