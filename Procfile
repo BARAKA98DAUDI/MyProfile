@@ -1,1 +1,1 @@
-"web: gunicorn profile_project.wsgi" 
+web: gunicorn profile_project.wsgi 
