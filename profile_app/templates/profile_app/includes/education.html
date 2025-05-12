@@ -1,0 +1,20 @@
+<section id="education" class="mb-5">
+    <h2 class="text-center mb-5">Education & Certifications</h2>
+    <div class="row">
+        {% for edu in profile.educations.all %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">{{ edu.degree }}</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">{{ edu.institution }}</h5>
+                    <h6 class="text-muted">{{ edu.field_of_study }}</h6>
+                    <p class="card-text mt-3">{{ edu.start_date|date:"Y" }} - {% if edu.current %}Present{% else %}{{ edu.end_date|date:"Y" }}{% endif %}</p>
+                    {% if edu.description %}
+                    <p class="card-text">{{ edu.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

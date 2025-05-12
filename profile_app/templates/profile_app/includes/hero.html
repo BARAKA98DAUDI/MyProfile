@@ -1,0 +1,28 @@
+<section class="hero-section text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% if profile.professional_headshot %}
+                <img src="{{ profile.professional_headshot.url }}" alt="{{ profile.full_name }}" 
+                     class="rounded-circle mb-4" width="150" height="150">
+                {% endif %}
+                <h1 class="display-4 fw-bold">{{ profile.full_name }}</h1>
+                <h2 class="h3 mb-4">{{ profile.title }}</h2>
+                
+                <div class="personal-values mb-4">
+                    <h3 class="h4">Personal Values</h3>
+                    <p class="lead">{{ profile.personal_values }}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <a href="#contact" class="btn btn-primary btn-lg mx-2">Contact Me</a>
+                    {% if profile.resume %}
+                    <a href="{{ profile.resume.url }}" class="btn btn-outline-light btn-lg mx-2" download>
+                        Download Resume
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

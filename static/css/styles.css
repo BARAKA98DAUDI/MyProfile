@@ -1,0 +1,77 @@
+/* About Me Section Styles */
+#about {
+    background-color: #f8f9fa;
+    padding: 4rem 0;
+}
+
+.profile-photo {
+    max-width: 250px;
+    border: 5px solid white;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+}
+
+.skill-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 20px;
+    margin: 0 0.5rem 0.5rem 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.mission-statement {
+    background-color: #f1f8ff;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #0d6efd;
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-photo {
+        max-width: 200px;
+    }
+    
+    #about {
+        padding: 2rem 0;
+    }
+}
+/* Custom styling for about section */
+#about {
+    background-color: #f8f9fa;
+}
+
+.img-fluid.rounded-circle {
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.badge.bg-primary {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+blockquote {
+    border-left: 4px solid #0d6efd;
+    padding-left: 1rem;
+}

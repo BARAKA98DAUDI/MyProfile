@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "axe/aria": [
+      "default",
+      {
+        "aria-valid-attr-value": "off",
+        "aria-progressbar-name": "off"
+      }
+    ],
+    "no-inline-styles": "off",
+    "meta-viewport": "off"
+  }
+}

@@ -1,0 +1,32 @@
+<section id="skills" class="mb-5">
+    <h2 class="text-center mb-5">Skills</h2>
+    <div class="row">
+        {% for skill in profile.skills.all %}
+        <div class="col-md-6 mb-4">
+            <div class="d-flex justify-content-between">
+                <h5 id="skill-{{ forloop.counter }}-label">
+                    {% if skill.icon_class %}
+                    <i class="{{ skill.icon_class }} me-2"></i>
+                    {% endif %}
+                    {{ skill.name }}
+                </h5>
+                <span>{{ skill.proficiency }}%</span>
+            </div>
+            <div class="progress skill-progress">
+                <div class="progress-bar" 
+                     role="progressbar" 
+                     style="--width: {{ skill.proficiency }}%"
+                     aria-valuenow="{{ skill.proficiency }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-labelledby="skill-{{ forloop.counter }}-label"
+                     aria-describedby="skill-{{ forloop.counter }}-description">
+                </div>
+                <div id="skill-{{ forloop.counter }}-description" class="visually-hidden">
+                    Current proficiency level: {{ skill.proficiency }}%
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<section id="experience" class="mb-5">
+    <h2 class="text-center mb-5">Experience</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="timeline">
+                {% for exp in profile.experiences.all %}
+                <div class="timeline-item mb-4">
+                    <div class="timeline-date me-4">
+                        {{ exp.start_date|date:"Y" }} - {% if exp.current %}Present{% else %}{{ exp.end_date|date:"Y" }}{% endif %}
+                    </div>
+                    <div class="timeline-content p-4">
+                        <h4>{{ exp.position }}</h4>
+                        <h5 class="text-primary">{{ exp.company }}</h5>
+                        <p>{{ exp.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

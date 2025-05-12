@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.full_name }} - {{ profile.title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+        .skill-progress {
+            height: 20px;
+            border-radius: 10px;
+        }
+        .project-card {
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .testimonial-card {
+            border-left: 4px solid #0d6efd;
+        }
+        .social-links a {
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: #0dcaf0 !important;
+        }
+        .social-links a .fab {
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover .fab {
+            transform: scale(1.1);
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    {% include 'profile_app/includes/hero.html' %}
+    
+    <div class="container py-5">
+        {% include 'profile_app/includes/about.html' %}
+        {% include 'profile_app/includes/skills.html' %}
+        {% include 'profile_app/includes/projects.html' %}
+        {% include 'profile_app/includes/experience.html' %}
+        {% include 'profile_app/includes/education.html' %}
+        {% include 'profile_app/includes/testimonials.html' %}
+        {% include 'profile_app/includes/contact.html' %}
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; {% now "Y" %} {{ profile.full_name }}. All rights reserved.</p>
+            <div class="social-links mt-3">
+                <a href="https://github.com/yourusername" 
+                   class="text-white mx-2"
+                   aria-label="GitHub profile"
+                   title="Visit my GitHub profile">
+                    <i class="fab fa-github fa-2x"></i>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" 
+                   class="text-white mx-2"
+                   aria-label="LinkedIn profile"
+                   title="Visit my LinkedIn profile">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+                <a href="https://twitter.com/yourhandle" 
+                   class="text-white mx-2"
+                   aria-label="Twitter profile"
+                   title="Visit my Twitter profile">
+                    <i class="fab fa-twitter fa-2x"></i>
+                    <span class="sr-only">Twitter</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
