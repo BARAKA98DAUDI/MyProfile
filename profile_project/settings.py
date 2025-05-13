@@ -1,31 +1,19 @@
 """
 Django settings for profile_project project.
-Optimized for Railway + Ngeison3.com
+Optimized for local development only.
 """
 
 import os
 from pathlib import Path
-import dj_database_url
-import urllib.parse
 
 # Build paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security Settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-123')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = [
-    'Ngeison3.com',
-    'www.Ngeison3.com',
-    '*.up.railway.app',
-    'localhost',
-    '127.0.0.1'
-]
-CSRF_TRUSTED_ORIGINS = [
-    'https://Ngeison3.com',
-    'https://www.Ngeison3.com',
-    'https://*.up.railway.app'
-]
+DEBUG = True  # Ensure this is True for local development
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -35,13 +23,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
     'profile_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,9 +55,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'profile_project.wsgi.application'
 
-# Database
-
-
+# Database: SQLite for local use
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -79,13 +63,6 @@ DATABASES = {
     }
 }
 
-# Only use dj_database_url for PostgreSQL (Railway's default)
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=False,  # Disable SSL for SQLite fallback
-        conn_settings={'options': '-c search_path=public'}  # For PostgreSQL
-    )
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -110,22 +87,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
-# Security
-if not DEBUG:
-    SECURE_HSTS_SECONDS = 2592000  # 30 days
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Development only: Don't force HTTPS or secure cookies
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
