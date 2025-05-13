@@ -72,27 +72,20 @@ WSGI_APPLICATION = 'profile_project.wsgi.application'
 # Database
 
 
-import urllib.parse
-
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-if DATABASE_URL and DATABASE_URL.startswith("postgres"):
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # Default to SQLite (local development or missing DATABASE_URL)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
+# Only use dj_database_url for PostgreSQL (Railway's default)
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=False,  # Disable SSL for SQLite fallback
+        conn_settings={'options': '-c search_path=public'}  # For PostgreSQL
+    )
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
